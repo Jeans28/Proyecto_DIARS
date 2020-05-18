@@ -1,0 +1,26 @@
+<!DOCTYPE html>	
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>	Catalogo de productos</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+	
+	
+	<div class="container mt-5" >
+		<div th:each="producto: ${productos}">
+			<div class="row justiy-content-center">
+				<div class="card" style="width: 18rem;">
+			  	<img th:src="@{'uploads/'}+ ${producto.foto}" class="card-img-top" th:alt="${producto.foto}" style="max-whidt:90%;max-heigth:100%;" />
+			  	<div class="card-body">
+			    <h5 class="card-title" th:text="@{producto.nombre}">A</h5>
+			    <p class="card-text" th:text="@{producto.descripcion}">S</p>
+			    <a class="btn btn-primary">Go somewhere</a>
+			  	</div>
+		  		</div>
+	  		</div>
+  		</div>
+	</div>
+</body>
+</html>	

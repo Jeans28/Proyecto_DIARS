@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container mt_4">
+		<div class="col-sm-6">
+			<form th:action="@{/save}" th:object=${producto} method="POST">
+				<div class="card">
+					<div class="card-header">
+					<h3>Modulo Producto</h3>
+					</div>
+					<div class="card-body">
+						<div class="form-group"> 
+						 	<label>ID</label>
+						 	<input th:field="*{id}" type="text" class="form-control"/>
+					 	</div>
+					 	<div class="form-group"> 
+						 	<label>Nombre</label>
+						 	<input th:field="*{nombre}" type="text" class="form-control"/>
+					 	</div>
+					 	<div class="form-group"> 
+						 	<label>Descripcion</label>
+						 	<input th:field="*{descripcion}" type="text" class="form-control"/>
+					 	</div>
+					 	<div class="form-group"> 
+						 	<label>Cantidad</label>
+						 	<input th:field="*{cantidad}" type="text" class="form-control"/>
+					 	</div>
+					 	<div class="form-group"> 
+						 	<label>Precio</label>
+						 	<input th:field="*{precio}" type="text" class="form-control"/>
+					 	</div>
+					 	<div class="form-group"> 
+						 	<label>Categoria</label>
+						 	<input th:field="*{categoria}" type="text" class="form-control"/>
+					 	</div>
+					</div>
+					<div class="card-footer">
+						<input type="submit" value="Guardar" class="btn-primary">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>	
