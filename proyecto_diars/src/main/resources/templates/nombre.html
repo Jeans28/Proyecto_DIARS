@@ -11,17 +11,15 @@
 <body>
 	<h1>Lista de Productos</h1>
 
-		<div class="container mt-4">
-		<div>
-			<form th:action="@{/pnombre}"  th:object="${producto}" class="form-inline" method="GET">
+	<div class="container mt-4">
+		<form th:action="@{/pnombre}"  th:object="${producto}" class="form-inline" method="GET">
 			<div class="form-group mx-sm-3 mb-2">
-				<input type="text" class="form-control"  placeholder="Producto"/>
+				<input type="text" th:field="*{nombre}" class="form-control"  placeholder="Producto"/>
 			</div>
 			<button type="submit" class="btn btn-primary mb-2">Buscar</button>
-			</form>
-		</div>
+		</form>
 		<table class="table">
-			<thead class="thead-dark">
+			<thead>
 				<tr>
 					<th>ID</th>
 					<th>Nombre</th>
@@ -34,7 +32,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="producto:${productos}" th:if="${producto.estado != 5}">
+				<tr th:each="producto: ${nombrepro}">
 					<td th:text="${producto.idproducto}"></td>
 					<td th:text="${producto.nombre}"></td>
 					<td th:text="${producto.cantidad}"></td>
@@ -43,13 +41,13 @@
 					<td th:text="${producto.categoria.nombre}"></td>
 					<td th:text="${producto.estado}"></td>
 					<td><a th:href="@{/editar/}+${producto.idproducto}"
-						class="btn btn-success">Editar</a> <a
+						class="btn btn-warning">Editar</a> <a
 						th:onclick="eliminar([[${producto.idproducto}]])"
-						class="btn btn-outline-danger">Eliminar</a></td>
+						class="btn btn-danger">Eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
-		<br> <a th:href="@{/aproducto}" class="btn btn-primary">Agregar</a>
+		<br> <a th:href="@{/acatalogo}" class="btn btn-primary">Agregar</a>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.js"
 		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="

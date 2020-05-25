@@ -11,5 +11,8 @@ public interface ProductoService {
 	public abstract List<Producto>listarpro();
 	public abstract void deletepro(int id);
 	public Optional<Producto>listarId(int id);
+	
+	//listar por nombre
+	public abstract List<Producto> Buscarnombre(String nombre);
 
 }

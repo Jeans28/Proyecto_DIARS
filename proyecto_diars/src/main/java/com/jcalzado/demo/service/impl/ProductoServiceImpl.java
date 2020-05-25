@@ -45,6 +45,14 @@ public class ProductoServiceImpl implements ProductoService{
 		return productodao.findById(id);
 	}
 
+	@Override
+	public List<Producto> Buscarnombre(String nombre) {
+		// TODO Auto-generated method stub
+		return productodao.findByNombre(nombre);
+	}
+
+
+
 
 	
 }
