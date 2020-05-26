@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,6 +27,7 @@ import com.jcalzado.demo.service.CategoriaService;
 import com.jcalzado.demo.service.ProductoService;
 
 @Controller
+@RequestMapping("/inicio")
 public class ProductosController {
 
 	@Autowired
@@ -116,5 +118,16 @@ public class ProductosController {
 		model.addAttribute("nombrepro", productoService.Buscarnombre(nombre));
 		return "nombre";
 		
+	}
+	@GetMapping("/nombre/{nombre}")
+	public String nombre(@PathVariable(name="nombre") String nombre, Model model) {
+		
+		model.addAttribute("nombrepro", productoService.Buscarnombre(nombre));
+		return "nombre";
+		
+	}
+	@GetMapping("/")
+	public String index(Model model) {
+		return "index";
 	}
 }

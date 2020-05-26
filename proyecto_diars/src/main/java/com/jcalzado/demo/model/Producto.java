@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import com.sun.istack.NotNull;
@@ -29,15 +31,18 @@ public class Producto implements Serializable {
 	private String nombre;
 	@Column
 	@NotNull
+	@Min(1)
 	private int cantidad;
 	@Column
 	@NotNull
+	@Min(1)
 	private double precio;
 	@Column
 	@NotEmpty
 	private String descripcion;
 	@Column
 	@NotNull
+	@Max(1)
 	private int estado;
 	
 	@Column

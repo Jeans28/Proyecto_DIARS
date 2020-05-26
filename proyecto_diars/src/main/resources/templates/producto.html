@@ -7,17 +7,25 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
+
 </head>
 <body>
-	<h1>Lista de Productos</h1>
 
-		<div class="container mt-4">
+	<div class="container">
+		<div class="container">
+				<form th:action="@{/inicio/catalogo}"
+				class="form-inline">
+				<button type="submit" class="btn btn-primary mb-2">Inicio</button>
+			</form>
+		</div>
+		<br>
 		<div>
-			<form th:action="@{/pnombre}"  th:object="${producto}" class="form-inline" method="GET">
-			<div class="form-group mx-sm-3 mb-2">
-				<input type="text" class="form-control"  placeholder="Producto"/>
-			</div>
-			<button type="submit" class="btn btn-primary mb-2">Buscar</button>
+			<form th:action="@{/pnombre}" th:object="${producto}"
+				class="form-inline" method="GET">
+				<div class="form-group mx-sm-3 mb-2">
+					<input type="text" class="form-control" placeholder="Producto" />
+				</div>
+				<button type="submit" class="btn btn-primary mb-2">Buscar</button>
 			</form>
 		</div>
 		<table class="table">
@@ -34,7 +42,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="producto:${productos}" th:if="${producto.estado != 5}">
+				<tr class="col-md-10" th:each="producto:${productos}"
+					th:if="${producto.estado != 5}">
 					<td th:text="${producto.idproducto}"></td>
 					<td th:text="${producto.nombre}"></td>
 					<td th:text="${producto.cantidad}"></td>
