@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Mi primer Login</title>
+<title>Mi primer Login</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
 <script
@@ -19,30 +19,32 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="modal-dialog text-center">
-        <div class="col-sm-8  main-section">
-            <div class="modal-content">
-                <form class="col-12" th:action="@{/login}" method="post">
-                    <div class="form-group" id="user-group">
-                        <input type="text" class="form-control" placeholder="Nombre de usuario" name="username"/>
-                    </div>
-                    <div class="form-group" id="contrasena-group">
-                        <input type="password" class="form-control" placeholder="Contrasena" name="password"/>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>
-                </form>
-                <div class="col-12 forgot">
-                    <p><a href="#">Recordar contrasena?</a></p>
-                    <p><a href="#" th:href="@{/signup}">Crear Usuario - Registrarse</a>
-                </div>
-                <div th:if="${param.error}" class="alert alert-danger" role="alert">
-		            Invalid username and password.
-		        </div>
-		        <div th:if="${param.logout}" class="alert alert-success" role="alert">
-		            You have been logged out.
-		        </div>
-            </div>
-        </div>
-    </div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="col-sm-6 ">
+			<div class="card" style="width: 40rem;">
+				<form th:action="@{/inicio/catalogo}" class="form-line">
+					<div class="card-body">
+						<div class="form-row ">
+							<div class="col-md-6 mb-3">
+								<label>Email</label> <input type="text" class="form-control"
+									placeholder="Email">
+							</div>
+							<div class="col-md-6 mb-3">
+								<label>Contraseña</label> <input type="text"
+									class="form-control" placeholder="Password">
+							</div>
+						</div>
+						<div>
+							<button type="submit" class="btn btn-primary">Ingresar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

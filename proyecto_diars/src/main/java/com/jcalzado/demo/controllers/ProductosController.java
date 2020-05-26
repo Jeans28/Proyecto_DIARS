@@ -66,7 +66,7 @@ public class ProductosController {
 	@GetMapping("/eliminar/{id}")
 	public String eliminarp(Model model,@PathVariable int id) {
 		 productoService.deletepro(id);
-		return "redirect:/prueba";
+		return "redirect:/lproducto";
 	}
 	
 	@GetMapping("/aproducto")

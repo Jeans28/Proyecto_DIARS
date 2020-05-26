@@ -28,6 +28,8 @@ public class Usuario implements Serializable{
 	private String contraseña;
 	@Column
 	private int dni;
+	@Column
+	private String direccion;
 	
 	
 	@OneToOne
@@ -90,7 +92,17 @@ public class Usuario implements Serializable{
 		this.rol = rol;
 	}
 
-	public Usuario(int idusuario, String nombre, String apellidos, String correo, String contraseña, int dni, Rol rol) {
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	
+	public Usuario(int idusuario, String nombre, String apellidos, String correo, String contraseña, int dni,
+			String direccion, Rol rol) {
 		super();
 		this.idusuario = idusuario;
 		this.nombre = nombre;
@@ -98,6 +110,7 @@ public class Usuario implements Serializable{
 		this.correo = correo;
 		this.contraseña = contraseña;
 		this.dni = dni;
+		this.direccion = direccion;
 		this.rol = rol;
 	}
 
@@ -106,10 +119,14 @@ public class Usuario implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+
 	@Override
 	public String toString() {
 		return "Usuario [idusuario=" + idusuario + ", nombre=" + nombre + ", apellidos=" + apellidos + ", correo="
-				+ correo + ", contraseña=" + contraseña + ", dni=" + dni + ", rol=" + rol + "]";
+				+ correo + ", contraseña=" + contraseña + ", dni=" + dni + ", direccion=" + direccion + ", rol=" + rol
+				+ "]";
 	}
 
 	@Override
@@ -119,6 +136,7 @@ public class Usuario implements Serializable{
 		result = prime * result + ((apellidos == null) ? 0 : apellidos.hashCode());
 		result = prime * result + ((contraseña == null) ? 0 : contraseña.hashCode());
 		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
+		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
 		result = prime * result + dni;
 		result = prime * result + idusuario;
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
@@ -150,6 +168,11 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!correo.equals(other.correo))
 			return false;
+		if (direccion == null) {
+			if (other.direccion != null)
+				return false;
+		} else if (!direccion.equals(other.direccion))
+			return false;
 		if (dni != other.dni)
 			return false;
 		if (idusuario != other.idusuario)
@@ -166,6 +189,8 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
+
+
 
 
 	private static final long serialVersionUID = 1L;
