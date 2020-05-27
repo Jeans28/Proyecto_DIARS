@@ -12,20 +12,19 @@
 
 	<div class="container">
 		<div class="container">
-			<form th:action="@{/inicio/catalogo}" class="form-inline">
+			<form th:action="@{/catalogo}" class="form-inline">
 				<button type="submit" class="btn btn-primary mb-2">Inicio</button>
 			</form>
 		</div>
 		<br>
-		<div>
-			<form th:action="@{/pnombre}" th:object="${producto}"
-				class="form-inline" method="GET">
-				<div class="form-group mx-sm-3 mb-2">
-					<input type="text" class="form-control" placeholder="Producto" />
-				</div>
-				<button type="submit" class="btn btn-primary mb-2">Buscar</button>
-			</form>
-		</div>
+		<form th:action="@{/pnombre}" th:object="${producto}"
+			class="form-inline" method="GET">
+			<div class="form-group mx-sm-3 mb-2">
+				<input type="text" th:field="*{nombre}" class="form-control"
+					placeholder="Producto" />
+			</div>
+			<button type="submit" class="btn btn-primary mb-2">Buscar</button>
+		</form>
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
@@ -40,29 +39,24 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="col-md-10" th:each="producto:${productos}"
-					th:if="${producto.estado != 5}">
-					<td th:text="${producto.idproducto}"></td>
-					<td th:text="${producto.nombre}"></td>
-					<td th:text="${producto.cantidad}"></td>
-					<td th:text="${producto.precio}"></td>
-					<td th:text="${producto.descripcion}"></td>
-					<td th:text="${producto.categoria.nombre}"></td>
-					<td th:text="${producto.estado}"></td>
-					<td><a th:href="@{/inicio/editar/}+${producto.idproducto}"
-						class="btn btn-success">Editar</a>
-						<a th:onclick="eliminar([[${producto.idproducto}]])"
-						class="btn btn-outline-danger">Eliminar</a></td>
+				<tr class="col-md-10" th:each="prod:${productos}">
+					<td th:text="${prod.idproducto}"></td>
+					<td th:text="${prod.nombre}"></td>
+					<td th:text="${prod.cantidad}"></td>
+					<td th:text="${prod.precio}"></td>
+					<td th:text="${prod.descripcion}"></td>
+					<td th:text="${prod.categoria.nombre}"></td>
+					<td th:text="${prod.estado}">	<td>
+					<a th:href="@{/editar/}+${prod.idproducto}" class="btn btn-success">Editar</a>
+					<a th:onclick="eliminar([[${prod.idproducto}]])" class="btn btn-outline-danger">Eliminar</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		<br> <a th:href="@{/inicio/aproducto}" class="btn btn-primary">Agregar</a>
-		<a th:onclick="ha()"
-			class="btn btn-outline-danger">Eliminar</a>
+		<br>
+		<a th:href="@{/aproducto}" class="btn btn-primary">Agregar</a>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.5.1.js"
-		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="funciones.js"></script>
 </body>

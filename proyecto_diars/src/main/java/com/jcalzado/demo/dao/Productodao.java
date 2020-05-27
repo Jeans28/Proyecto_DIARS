@@ -11,5 +11,6 @@ import com.jcalzado.demo.model.Producto;
 
 @Repository("productodao")
 public interface Productodao extends JpaRepository<Producto, Integer> {
+	
 	List<Producto>findByNombre(String nombre);
 }

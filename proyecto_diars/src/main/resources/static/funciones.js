@@ -1,3 +1,4 @@
+
 function eliminar(id) {
 	swal({
 		  title: "¿Estas seguro de eliminar?",
@@ -24,10 +25,5 @@ function eliminar(id) {
 		  } else {
 		    swal("No se elimino el producto");
 		  }
-		});
-}
-function ha() {
-	swal("Are you sure you want to do this?", {
-		  buttons: ["Oh noez!", true],
 		});
 }

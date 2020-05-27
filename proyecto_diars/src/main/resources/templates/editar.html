@@ -30,7 +30,7 @@
 	</div>
 	<div class="container">
 		<div class="col-sm-6">
-			<form th:action="@{/acatalogo}" th:object="${producto}" method="POST"
+			<form th:action="@{/editars}" th:object="${producto}" method="POST"
 				enctype="multipart/form-data">
 				<div class="card">
 					<div class="card-header">
@@ -39,34 +39,41 @@
 					<div class="card-body">
 						<div class="form-group">
 							<label>ID</label> <input th:field="*{idproducto}" type="text"
-								class="form-control" />
+								class="form-control" placeholder="Ingrese Nombre" />
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
 						</div>
 						<div class="form-group">
 							<label>Nombre</label> <input th:field="*{nombre}" type="text"
-								class="form-control" />
+								class="form-control" placeholder="Ingrese Nombre" />
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
 						</div>
 						<div class="form-group">
 							<label>Descripcion</label> <input th:field="*{descripcion}"
-								type="text" class="form-control" />
+								type="text" class="form-control" placeholder="Ingrese Descripcion"/>
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
 						</div>
 						<div class="form-group">
 							<label>Cantidad</label> <input th:field="*{cantidad}" type="text"
-								class="form-control" />
+								class="form-control" placeholder="Ingrese Cantidad" />
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}"></small>
 						</div>
 						<div class="form-group">
 							<label>Precio</label> <input th:field="*{precio}" type="text"
-								class="form-control" />
+								class="form-control" placeholder="Ingrese Precio" />
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></small>
 						</div>
 						<div class="form-group"> 
 						 	<label>Estado(Disponible=1/No Disponible=0)</label>
-						 	<input th:field="*{estado}" type="text" class="form-control"/>
+						 	<input th:field="*{estado}" type="text" class="form-control" placeholder="Ingrese Estado del producto"/>
+						 	<small class="form-text text-danger" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></small>
 					 	</div>
 						<div class="form-group">
+						<label>Categoria  </label> 
 							<select class="browser-default custom-select col-md-4"
 								th:field="*{categoria}">
-								<option value="" th:text="'Select Categoria'"></option>
+								<option value="10" th:text="'No Categorizado'"></option>
 								<option th:each="cat :${categoria}"
-									th:value="${cat.idcategoria}" th:text="${cat.nombre}" />
+									th:value="${cat.idcategoria}" th:text="${cat.nombre}" th:if="${cat.idcategoria != 10}" />
 							</select>
 						</div>
 						<div class="row form-group">
@@ -74,7 +81,7 @@
 						</div>
 					</div>
 					<div class="card-footer">
-						<input type="submit" value="Guardar" class="btn-primary">
+						<input type="submit" value="Guardar" class="btn-primary"/>
 					</div>
 				</div>
 			</form>
