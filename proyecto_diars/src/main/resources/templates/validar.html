@@ -24,34 +24,10 @@
 	<br>
 	<br>
 	<div class="container">
-		<div class="col-sm-6 ">
-			<div class="card text-center" style="width: 40rem;">
-			<br>
-			<div> <h2 class="card-title text-center">Iniciar Sesion</h2>
-			</div>
-				<form th:action="@{/validar}" class="form-line">
-					<div class="card-body">
-						<div class="form-row ">
-							<div class="col-md-6 mb-5">
-								<label>Email</label> <input type="text" class="form-control"
-									name="correo" placeholder="Email">
-							</div>
-							<div class="col-md-6 mb-5">
-								<label>Contraseña</label> <input type="password"
-									class="form-control" name="contraseña" placeholder="Password">
-							</div>
-						</div>
-						<div>
-							<button type="submit" class="btn btn-primary">Ingresar</button>
+		
+		<h3>Cuenta y/o contraseña Incorrecta</h3>
+		<button type="submit" class="btn btn-primary">Volver a intentar</button>
 							<a th:href="@{/catalogo}" class="btn btn-success">Saltar Paso</a>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<br>
-		<br>
-		<br>
 	</div>
 </body>
 </html>

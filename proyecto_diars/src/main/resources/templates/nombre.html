@@ -9,17 +9,50 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<h1>Lista de Productos</h1>
-
 	<div class="container mt-4">
-		<form th:action="@{/pnombre}"  th:object="${producto}" class="form-inline" method="GET">
-			<div class="form-group mx-sm-3 mb-2">
-				<input type="text" th:field="*{nombre}" class="form-control"  placeholder="Producto"/>
-			</div>
-			<button type="submit" class="btn btn-primary mb-2">Buscar</button>
-		</form>
+		<div>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand" href="/catalogo">Bodega</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><a class="nav-link" href="/catalogo">Home<span
+								class="sr-only">(current)</span></a></li>
+						<li class="nav-item"><a class="nav-link disabled" href="#">Carrito
+								de compras</a></li>
+						<li class="nav-item"><a class="nav-link " href="#"
+							tabindex="-1">Acerca de la Bodega</a></li>
+					</ul>
+					<form th:action="@{/pnombre}" th:object="${producto}" class="form-inline my-2 my-lg-0" method="GET" >
+						<input class="form-control mr-sm-2" type="text" th:field="*{nombre}" 
+							placeholder="Buscar">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+					</form>
+					<ul class="navbar-nav">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" th:href="@{/}"
+							id="navbarDropdown" role="button" data-toggle="dropdown"
+							aria-haspopup="true"> Admin </a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item disable" href="#">user</a> <a
+									class="dropdown-item" th:href="@{/lproducto}">Ver Productos</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" th:href="@{/}">Cerrar Sesion</a>
+							</div></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<br>
+		<div>
 		<table class="table">
-			<thead>
+			<thead class="thead-dark">
 				<tr>
 					<th>ID</th>
 					<th>Nombre</th>
@@ -41,14 +74,17 @@
 					<td th:text="${producto.categoria.nombre}"></td>
 					<td th:text="${producto.estado}"></td>
 					<td><a th:href="@{/editar/}+${producto.idproducto}"
-						class="btn btn-warning">Editar</a> <a
+						class="btn btn-success">Editar</a> <a
 						th:onclick="eliminar([[${producto.idproducto}]])"
-						class="btn btn-danger">Eliminar</a></td>
+						class="btn btn-outline-danger">Eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
-		<br> <a th:href="@{/acatalogo}" class="btn btn-primary">Agregar</a>
+		<br> <a th:href="@{/aproducto}" class="btn btn-primary">Agregar</a>
+		<a th:href="@{/lproducto}" class="btn btn-litgh">Ver todo</a>
 	</div>
+	</div>
+	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"
 		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 		crossorigin="anonymous"></script>

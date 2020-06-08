@@ -82,11 +82,12 @@ public class ProductosController {
 
 	@PostMapping("/aproducto")
 	public String guardarca(@RequestParam(name = "file", required = false) MultipartFile foto, @Valid Producto p,
-			BindingResult result, RedirectAttributes flash) {
+			BindingResult result, RedirectAttributes flash, Model model) {
 
 		if (result.hasErrors()) {
+			model.addAttribute("categoria", categoriaservice.listarcat());
 			return "agregarproducto";
-		} else{
+		} else {
 			if (!foto.isEmpty()) {
 				String ruta = "D://Temp//uploads";
 
@@ -106,26 +107,26 @@ public class ProductosController {
 
 		return "redirect:/lproducto";
 	}
-	
 
 	@PostMapping("/editars")
-	public String editars(@RequestParam(name = "file", required = false) MultipartFile foto,  Producto p, RedirectAttributes flash) {
+	public String editars(@RequestParam(name = "file", required = false) MultipartFile foto, Producto p,
+			RedirectAttributes flash) {
 
-			if (!foto.isEmpty()) {
-				String ruta = "D://Temp//uploads";
+		if (!foto.isEmpty()) {
+			String ruta = "D://Temp//uploads";
 
-				try {
-					byte[] bytes = foto.getBytes();
-					Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
-					Files.write(rutaAbsoluta, bytes);
-					p.setFoto(foto.getOriginalFilename());
+			try {
+				byte[] bytes = foto.getBytes();
+				Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
+				Files.write(rutaAbsoluta, bytes);
+				p.setFoto(foto.getOriginalFilename());
 
-				} catch (Exception e) {
+			} catch (Exception e) {
 
-				}
-				productoService.save(p);
-				flash.addFlashAttribute("success", "Foto subida!!");
 			}
+			productoService.save(p);
+			flash.addFlashAttribute("success", "Foto subida!!");
+		}
 
 		return "redirect:/lproducto";
 	}
@@ -142,6 +143,7 @@ public class ProductosController {
 	public String listarprueba(Model model) {
 		List<Producto> productos = productoService.listarpro();
 		List<Usuario> usuario = usuarioservice.lsitarusu();
+		model.addAttribute("producto", new Producto());
 		model.addAttribute("productos", productos);
 		model.addAttribute("usuario", usuario);
 		return "catalogoa";
@@ -153,7 +155,7 @@ public class ProductosController {
 		model.addAttribute("nombrepro", productoService.Buscarnombre(nombre));
 		return "nombre";
 	}
-	
+
 	@GetMapping("/catalogon")
 	public String catalogopornombre(@RequestParam String nombre, Model model,
 			@ModelAttribute("producto") Producto producto) {
@@ -161,19 +163,15 @@ public class ProductosController {
 		return "catalogopornombre";
 	}
 
-	@GetMapping("/,/login")
+	@GetMapping("/")
 	public String index() {
 		return "index";
 	}
 
-	/*
-	 * @GetMapping("/validar") public String validar( String correo,String
-	 * contraseña,Usuario u,BindingResult result,Model model) {
-	 * if(result.hasErrors()) { return "index"; }
-	 * List<Usuario>usuario=usuarioservice.validar(correo, contraseña); if(usuario
-	 * !=null){ return "/inicio/catalogo"; } if(correo.equals("admin") &&
-	 * contraseña.equals("123456")) { return "redirect:/inicio/catalogoa"; } return
-	 * "index"; }
-	 */
+	@GetMapping("/validar") 
+	public String validar() {
+	return "validar"; }
+	
+	
 
 }

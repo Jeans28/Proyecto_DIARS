@@ -29,12 +29,13 @@
 		</div>
 	</div>
 	<div class="container">
+	<br>
 		<div class="col-sm-6">
 			<form th:action="@{/editars}" th:object="${producto}" method="POST"
 				enctype="multipart/form-data">
 				<div class="card">
-					<div class="card-header">
-						<h3>Modulo Producto</h3>
+					<div class="card-header text-white bg-success">
+						<h3>Editar Producto</h3>
 					</div>
 					<div class="card-body">
 						<div class="form-group">
@@ -81,7 +82,7 @@
 						</div>
 					</div>
 					<div class="card-footer">
-						<input type="submit" value="Guardar" class="btn-primary"/>
+						<input type="submit" value="Guardar" class="btn-success"/>
 					</div>
 				</div>
 			</form>

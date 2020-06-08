@@ -1,5 +1,6 @@
 package com.jcalzado.demo;
 
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,6 +14,5 @@ public class Mvcconfig implements WebMvcConfigurer{
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 		registry.addResourceHandler("uploads/**").addResourceLocations("file:/D:/Temp/uploads/");	
 	}
-
-	 
+	
 }
