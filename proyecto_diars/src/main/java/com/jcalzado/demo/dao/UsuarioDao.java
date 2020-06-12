@@ -10,5 +10,9 @@ import com.jcalzado.demo.model.Usuario;
 @Repository("usuariodao")
 public interface UsuarioDao extends JpaRepository<Usuario, Integer>{
 	
-	List<Usuario>findByCorreoAndContraseña(String correo,String contraseña);
+	Usuario findByCorreo(String correo);
+	
+	boolean existsByCorreoAndPassword(String correo,String password);
+
+
 }

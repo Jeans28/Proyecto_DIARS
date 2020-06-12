@@ -25,7 +25,7 @@ public class Usuario implements Serializable{
 	@Column
 	private String correo;
 	@Column
-	private String contraseña;
+	private String password;
 	@Column
 	private int dni;
 	@Column
@@ -68,12 +68,14 @@ public class Usuario implements Serializable{
 		this.correo = correo;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+
+
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getDni() {
@@ -100,15 +102,15 @@ public class Usuario implements Serializable{
 		this.direccion = direccion;
 	}
 
-	
-	public Usuario(int idusuario, String nombre, String apellidos, String correo, String contraseña, int dni,
+
+	public Usuario(int idusuario, String nombre, String apellidos, String correo, String password, int dni,
 			String direccion, Rol rol) {
 		super();
 		this.idusuario = idusuario;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.correo = correo;
-		this.contraseña = contraseña;
+		this.password = password;
 		this.dni = dni;
 		this.direccion = direccion;
 		this.rol = rol;
@@ -119,27 +121,18 @@ public class Usuario implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
-
-	@Override
-	public String toString() {
-		return "Usuario [idusuario=" + idusuario + ", nombre=" + nombre + ", apellidos=" + apellidos + ", correo="
-				+ correo + ", contraseña=" + contraseña + ", dni=" + dni + ", direccion=" + direccion + ", rol=" + rol
-				+ "]";
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((apellidos == null) ? 0 : apellidos.hashCode());
-		result = prime * result + ((contraseña == null) ? 0 : contraseña.hashCode());
 		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
 		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
 		result = prime * result + dni;
 		result = prime * result + idusuario;
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((rol == null) ? 0 : rol.hashCode());
 		return result;
 	}
@@ -157,11 +150,6 @@ public class Usuario implements Serializable{
 			if (other.apellidos != null)
 				return false;
 		} else if (!apellidos.equals(other.apellidos))
-			return false;
-		if (contraseña == null) {
-			if (other.contraseña != null)
-				return false;
-		} else if (!contraseña.equals(other.contraseña))
 			return false;
 		if (correo == null) {
 			if (other.correo != null)
@@ -182,6 +170,11 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!nombre.equals(other.nombre))
 			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
 		if (rol == null) {
 			if (other.rol != null)
 				return false;
@@ -189,6 +182,17 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [idusuario=" + idusuario + ", nombre=" + nombre + ", apellidos=" + apellidos + ", correo="
+				+ correo + ", password=" + password + ", dni=" + dni + ", direccion=" + direccion + ", rol=" + rol
+				+ "]";
+	}
+
+
+
+
 
 
 

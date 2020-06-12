@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -43,6 +45,7 @@ public class ProductosController {
 	@Qualifier("usuarioservice")
 	private UsuarioService usuarioservice;
 
+	
 	@GetMapping("/lproducto")
 	public String listar(Model model) {
 		List<Producto> productos = productoService.listarpro();
@@ -131,6 +134,21 @@ public class ProductosController {
 		return "redirect:/lproducto";
 	}
 
+	@GetMapping("/validar") 
+	public String validar(@RequestParam String correo,String password, Model model) {
+		
+		boolean val=usuarioservice.va(correo, password);
+		if(val==true) {
+			model.addAttribute("usuario","holaaaaaaaaaaa");
+			List<Producto> productos = productoService.listarpro();
+			model.addAttribute("producto", new Producto());
+			model.addAttribute("productos", productos);
+			return "catalago";
+		}else {
+			return "redirect:/login";
+		}
+	}
+	
 	@GetMapping("/catalogo")
 	public String listarcatalogo(Model model) {
 		List<Producto> productos = productoService.listarpro();
@@ -142,7 +160,7 @@ public class ProductosController {
 	@GetMapping("/catalogoa")
 	public String listarprueba(Model model) {
 		List<Producto> productos = productoService.listarpro();
-		List<Usuario> usuario = usuarioservice.lsitarusu();
+		List<Usuario> usuario = usuarioservice.listarusu();
 		model.addAttribute("producto", new Producto());
 		model.addAttribute("productos", productos);
 		model.addAttribute("usuario", usuario);
@@ -163,14 +181,16 @@ public class ProductosController {
 		return "catalogopornombre";
 	}
 
-	@GetMapping("/")
+	/*@GetMapping("/")
 	public String index() {
 		return "index";
-	}
+	}*/
 
-	@GetMapping("/validar") 
-	public String validar() {
-	return "validar"; }
+	@GetMapping("/login")
+	public String index(Model model) {
+		model.addAttribute("usuario", new Usuario());
+		return "login";
+	}
 	
 	
 
