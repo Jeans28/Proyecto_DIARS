@@ -11,7 +11,5 @@ public interface CarritoService {
 	public abstract List<Carrito>listarCesta();
 	public abstract void deleteCesta(int id);
 	public Optional<Carrito>listarId(int id);
-	
-	//listar por nombre
-	public abstract List<Carrito> Buscarnombre(String nombre);
+
 }

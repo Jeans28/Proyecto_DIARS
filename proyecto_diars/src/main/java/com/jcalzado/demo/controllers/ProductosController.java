@@ -59,11 +59,11 @@ public class ProductosController {
 		return "producto";
 	}
 
-	@GetMapping("/acarrito")
-	public String agregarProd(Model model) {
-		List<Carrito> carritoprods = carritoservice.listarCesta();
-		model.addAttribute("carritoprods", carritoprods);
-		model.addAttribute("carrito", new Carrito());		
+	@GetMapping("/acarrito/{id}")
+	public String agregarProd(@PathVariable int id, Model model) {
+		Optional<Carrito> carritoprods = carritoservice.listarId(id);
+		model.addAttribute("carrito", carritoprods);
+		//model.addAttribute("carrito", new Carrito());		
 		return "carrito";
 	}
 

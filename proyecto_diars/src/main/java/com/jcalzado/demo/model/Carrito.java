@@ -21,7 +21,10 @@ import com.sun.istack.NotNull;
 public class Carrito implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int itemId;
+	private int carritoId;
+	@Column
+	@NotEmpty
+	private String item;
 	@Column
 	@NotEmpty
 	private String nombre;
@@ -63,12 +66,21 @@ public class Carrito implements Serializable{
 		this.producto = producto;
 	}
 */
-	public int getItemId() {
-		return itemId;
+
+	public int getCarritoId() {
+		return carritoId;
 	}
 
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
+	public void setCarritoId(int carritoId) {
+		this.carritoId = carritoId;
+	}
+
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		this.item = item;
 	}
 
 	public String getNombre() {
@@ -127,14 +139,21 @@ public class Carrito implements Serializable{
 		this.producto = producto;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + cantidad;
+		result = prime * result + carritoId;
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
 		result = prime * result + ((foto == null) ? 0 : foto.hashCode());
-		result = prime * result + itemId;
+		result = prime * result + ((item == null) ? 0 : item.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(precio);
@@ -156,6 +175,8 @@ public class Carrito implements Serializable{
 		Carrito other = (Carrito) obj;
 		if (cantidad != other.cantidad)
 			return false;
+		if (carritoId != other.carritoId)
+			return false;
 		if (descripcion == null) {
 			if (other.descripcion != null)
 				return false;
@@ -166,7 +187,10 @@ public class Carrito implements Serializable{
 				return false;
 		} else if (!foto.equals(other.foto))
 			return false;
-		if (itemId != other.itemId)
+		if (item == null) {
+			if (other.item != null)
+				return false;
+		} else if (!item.equals(other.item))
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
@@ -185,12 +209,16 @@ public class Carrito implements Serializable{
 		return true;
 	}
 
+	
+	
 	@Override
 	public String toString() {
-		return "Carrito [itemId=" + itemId + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio="
-				+ precio + ", cantidad=" + cantidad + ", subtotal=" + subtotal + ", foto=" + foto + ", producto="
-				+ producto + "]";
+		return "Carrito [carritoId=" + carritoId + ", item=" + item + ", nombre=" + nombre + ", descripcion="
+				+ descripcion + ", precio=" + precio + ", cantidad=" + cantidad + ", subtotal=" + subtotal + ", foto="
+				+ foto + ", producto=" + producto + "]";
 	}
-	
+
+
+
 	private static final long serialVersionUID = 1L;
 }

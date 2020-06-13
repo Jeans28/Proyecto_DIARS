@@ -45,10 +45,5 @@ public class CarritoServiceImpl implements CarritoService{
 		return carritodao.findById(id);
 	}
 
-	@Override
-	public List<Carrito> Buscarnombre(String nombre) {
-		// TODO Auto-generated method stub
-		return carritodao.findByNombre(nombre);
-	}
 
 }
