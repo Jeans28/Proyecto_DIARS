@@ -66,8 +66,8 @@
 								th:text="${producto.descripcion}"></p>
 							<h5 class="text-danger d-flex justify-content-center"
 								th:text="'S/.'+${producto.precio}"></h5>
-							<a href="#" class="btn btn-primary btn disabled">Agregar a
-								Carrito</a> <a href="#" class="btn btn-danger btn disabled ">Comprar</a>
+							<a th:href="@{/acarrito}" class="btn btn-primary">Agregar a Carrito</a> 
+							<a th:href="@{/acarrito}" class="btn btn-danger">Comprar</a>
 						</div>
 					</div>
 				</div>

@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.jcalzado.demo.model.Carrito;
 import com.jcalzado.demo.model.Producto;
 import com.jcalzado.demo.model.Usuario;
+import com.jcalzado.demo.service.CarritoService;
 import com.jcalzado.demo.service.CategoriaService;
 import com.jcalzado.demo.service.ProductoService;
 import com.jcalzado.demo.service.UsuarioService;
@@ -45,6 +47,9 @@ public class ProductosController {
 	@Qualifier("usuarioservice")
 	private UsuarioService usuarioservice;
 
+	@Autowired
+	@Qualifier("carritoservice")
+	private CarritoService carritoservice;
 	
 	@GetMapping("/lproducto")
 	public String listar(Model model) {
@@ -52,6 +57,14 @@ public class ProductosController {
 		model.addAttribute("productos", productos);
 		model.addAttribute("producto", new Producto());
 		return "producto";
+	}
+
+	@GetMapping("/acarrito")
+	public String agregarProd(Model model) {
+		List<Carrito> carritoprods = carritoservice.listarCesta();
+		model.addAttribute("carritoprods", carritoprods);
+		model.addAttribute("carrito", new Carrito());		
+		return "carrito";
 	}
 
 	/*
