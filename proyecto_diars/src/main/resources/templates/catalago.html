@@ -9,6 +9,8 @@
 <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="https://use.fontawesome.com/your-embed-code.js"></script>
+<script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
+<script th:src="@{/js/funciones.js}"></script>	
 </head>
 <body>
 	<div class="container">
@@ -28,7 +30,7 @@
 								class="sr-only">(current)</span></a></li>
 						<li class="nav-item">
 						<a class="nav-link" href="#">
-						<i class="fas fa-cart-plus"></i>Carrito
+						<i class="fas fa-cart-plus"></i><label style="color:orange" th:value="${contador}"></label>
 						</a></li>
 						<li class="nav-item"><a class="nav-link " href="#"
 							tabindex="-1">Acerca de la Bodega</a></li>
@@ -47,7 +49,8 @@
 									class="dropdown-item" th:href="@{/}" >Ingresar</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" th:href="@{/login}">Salir</a>
-							</div></li>
+							</div>
+						</li>
 					</ul>
 				</div>
 			</nav>
@@ -70,14 +73,20 @@
 								th:text="${producto.descripcion}"></p>
 							<h5 class="text-danger d-flex justify-content-center"
 								th:text="'S/.'+${producto.precio}"></h5>
-							<a th:href="'id='+${producto.idproducto}" class="btn btn-primary">Agregar a Carrito</a> 
-							<a th:href="@{/acarrito}" class="btn btn-danger">Comprar</a>
+								<!-- 
+							<form th:action="@{/carrito}" th:object="${producto}" class="form-inline my-3 my-lg-1" method="POST" >
+								<input type="hidden" class="form-control mr-sm-2" th:value="${producto.idproducto}" th:name="idproducto">
+								<input type="hidden" class="form-control mr-sm-2" th:name="cantidad" th:value="1">
+								<button class="btn btn-primary" type="submit">Agregar a carrito</button>
+							</form>					
+							 -->	
+							<button class="btn btn-primary add-to-cart" type="button" th:data-productid="${producto.idproducto}">Agregar a carrito</button>
+							<a th:href="@{/carrito}+${producto.idproducto}" class="btn btn-danger">Comprar</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 </body>
 </html>

@@ -27,3 +27,28 @@ function eliminar(id) {
 		  }
 		});
 }
+
+$(document).on('click', '.add-to-cart', function(e){
+	e.preventDefault();
+	
+	//$.cookie('c', '12345', { expires: 0.5 })
+	var button = $(this);
+	var data = {
+		product_id: button.attr("data-productid"), 
+		quantity: 1
+	};
+	console.log(data);
+	
+	$.ajax({
+	  type: "POST",
+	  url: "/carrito",
+	  data: data,
+
+	  success: function(res){
+		  console.log(res);
+	  }, 
+	  error: function(err){
+		  console.log(err);
+	  }
+	});
+});

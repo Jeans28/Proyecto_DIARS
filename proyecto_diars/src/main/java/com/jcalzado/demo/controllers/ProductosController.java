@@ -1,24 +1,31 @@
 package com.jcalzado.demo.controllers;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.aspectj.apache.bcel.classfile.Module.Require;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +34,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.jcalzado.demo.model.Carrito;
 import com.jcalzado.demo.model.Producto;
 import com.jcalzado.demo.model.Usuario;
-import com.jcalzado.demo.service.CarritoService;
+import com.jcalzado.demo.model.request.RequestProduct;
 import com.jcalzado.demo.service.CategoriaService;
 import com.jcalzado.demo.service.ProductoService;
 import com.jcalzado.demo.service.UsuarioService;
@@ -47,9 +54,6 @@ public class ProductosController {
 	@Qualifier("usuarioservice")
 	private UsuarioService usuarioservice;
 
-	@Autowired
-	@Qualifier("carritoservice")
-	private CarritoService carritoservice;
 	
 	@GetMapping("/lproducto")
 	public String listar(Model model) {
@@ -59,13 +63,17 @@ public class ProductosController {
 		return "producto";
 	}
 
+	int item;
+	double totalPagar= 0.0;
+	int cantidad= 1;
 	@GetMapping("/acarrito/{id}")
 	public String agregarProd(@PathVariable int id, Model model) {
-		Optional<Carrito> carritoprods = carritoservice.listarId(id);
-		model.addAttribute("carrito", carritoprods);
-		//model.addAttribute("carrito", new Carrito());		
-		return "carrito";
+		Optional<Producto> carritoprods = productoService.listarId(id);
+		model.addAttribute("producto", carritoprods);
+		return  "producto";		
 	}
+	
+	
 
 	/*
 	 * @GetMapping("/aproducto") public String agregar(Model model) {
@@ -168,6 +176,19 @@ public class ProductosController {
 		model.addAttribute("producto", new Producto());
 		model.addAttribute("productos", productos);
 		return "catalago";
+	}
+	
+	@CrossOrigin(origins = "*")
+	@PostMapping(value="/carrito", consumes = MediaType.ALL_VALUE)
+	public String listarcarrito(@RequestBody RequestProduct request) {
+		
+		System.out.println(request.getProduct_id());
+		
+		//List<Producto> productos = productoService.listarpro();
+		//model.addAttribute("producto", new Producto());
+		//model.addAttribute("productos", productos);
+		//return "catalago";
+		return "";
 	}
 
 	@GetMapping("/catalogoa")
