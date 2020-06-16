@@ -83,6 +83,7 @@ public class ProductosController {
 	 * @PostMapping("/save") public String guardap(@Valid Producto p,Model model) {
 	 * productoService.save(p); return "redirect:/lproducto"; }
 	 */
+	
 	@GetMapping("/editar/{id}")
 	public String editar(@PathVariable int id, Model model) {
 		Optional<Producto> producto = productoService.listarId(id);
@@ -227,5 +228,16 @@ public class ProductosController {
 	}
 	
 	
+	@GetMapping("/registrar")
+	public String registrar(Model model) {
+		model.addAttribute("usuario", new Usuario());
+		return "registrarcliente";
+	}
+	
+	@PostMapping("/registrar")
+	public String guardarcli(Usuario u){
+				usuarioservice.save(u);
+		return "redirect:/login";
+	}
 
 }

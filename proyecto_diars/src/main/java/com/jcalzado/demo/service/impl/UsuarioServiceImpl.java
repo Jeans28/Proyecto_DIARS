@@ -59,5 +59,11 @@ public class UsuarioServiceImpl implements UsuarioService{
 		}
 		return res;
 	}
+
+	@Override
+	public Usuario save(Usuario u) {
+		// TODO Auto-generated method stub
+		return usuariodao.save(u);
+	}
 	
 }
