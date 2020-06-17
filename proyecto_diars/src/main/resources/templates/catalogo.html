@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -12,50 +13,12 @@
 <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
 <script th:src="@{/js/funciones.js}"></script>	
 </head>
-<body>
-	<div class="container">
-		<div>
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-				<a class="navbar-brand" href="/catalogo">Bodega</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
 
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link" href="/catalogo">Home<span
-								class="sr-only">(current)</span></a></li>
-						<li class="nav-item">
-						<a class="nav-link" href="#">
-						<i class="fas fa-cart-plus"></i><label style="color:orange" th:value="${contador}"></label>
-						</a></li>
-						<li class="nav-item"><a class="nav-link " href="#"
-							tabindex="-1">Acerca de la Bodega</a></li>
-					</ul>
-					<form th:action="@{/catalogon}" th:object="${producto}" class="form-inline my-2 my-lg-0" method="GET" >
-						<input class="form-control mr-sm-2" type="text" th:field="*{nombre}" 
-							placeholder="Buscar">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-					</form>
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" th:href="@{/}"
-							id="navbarDropdown" role="button" data-toggle="dropdown"
-							aria-haspopup="true">Iniciar Sesion</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown"> <a
-									class="dropdown-item" th:href="@{/}" >Ingresar</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" th:href="@{/login}">Salir</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</div>
-		<br>
+	
+<body>
+<div th:replace= "header :: myheader"></div> 
+	<div class="container">
+	  <br>
 		<div class="row">
 			<a th:text="${usuario}"></a>
 			<div th:each="producto: ${productos}" th:if="${producto.estado == 1}">
@@ -81,7 +44,7 @@
 							</form>					
 							 -->	
 							<button class="btn btn-primary add-to-cart" type="button" th:data-productid="${producto.idproducto}">Agregar a carrito</button>
-							<a th:href="@{/carrito}+${producto.idproducto}" class="btn btn-danger">Comprar</a>
+							<a th:href="@{/carrito}" class="btn btn-danger">Comprar</a>
 						</div>
 					</div>
 				</div>

@@ -35,6 +35,7 @@ import com.jcalzado.demo.model.Carrito;
 import com.jcalzado.demo.model.Producto;
 import com.jcalzado.demo.model.Usuario;
 import com.jcalzado.demo.model.request.RequestProduct;
+import com.jcalzado.demo.service.CarritoService;
 import com.jcalzado.demo.service.CategoriaService;
 import com.jcalzado.demo.service.ProductoService;
 import com.jcalzado.demo.service.UsuarioService;
@@ -54,6 +55,9 @@ public class ProductosController {
 	@Qualifier("usuarioservice")
 	private UsuarioService usuarioservice;
 
+	@Autowired
+	@Qualifier("carritoservice")
+	private CarritoService carritoservice;
 	
 	@GetMapping("/lproducto")
 	public String listar(Model model) {
@@ -63,17 +67,22 @@ public class ProductosController {
 		return "producto";
 	}
 
-	int item;
-	double totalPagar= 0.0;
-	int cantidad= 1;
-	@GetMapping("/acarrito/{id}")
-	public String agregarProd(@PathVariable int id, Model model) {
-		Optional<Producto> carritoprods = productoService.listarId(id);
-		model.addAttribute("producto", carritoprods);
-		return  "producto";		
+	@GetMapping("/carrito")
+	public String listarcar(Model model) {
+		List<Carrito> carrito = carritoservice.listarcar();
+		model.addAttribute("carrito", new Carrito());
+		model.addAttribute("carrito", carrito);
+		return  "carrito";		
 	}
-	
-	
+	/*
+	@GetMapping("/principal")
+	public String carrito(Model model) {
+		List<Producto> carritoprods = productoService.listarpro();
+		model.addAttribute("producto", new Producto());
+		model.addAttribute("producto", carritoprods);
+		return  "principal";		
+	}
+	*/
 
 	/*
 	 * @GetMapping("/aproducto") public String agregar(Model model) {
@@ -176,7 +185,7 @@ public class ProductosController {
 		List<Producto> productos = productoService.listarpro();
 		model.addAttribute("producto", new Producto());
 		model.addAttribute("productos", productos);
-		return "catalago";
+		return "catalogo";
 	}
 	
 	@CrossOrigin(origins = "*")
