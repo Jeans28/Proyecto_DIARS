@@ -9,10 +9,14 @@
 .col.left {
     max-width: 80%!important;
     text-align: right;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .col.right {
     max-width: 20%;
     text-align: left;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .row.buttons {
     padding: 40px 0;
@@ -24,4 +28,8 @@ button.btn.btn-outline-primary.continue {
 svg.svg-inline--fa.fa-trash {
     float: right;
     cursor: pointer;
+}
+.row.subtotal {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
 }
